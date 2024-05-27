@@ -4,7 +4,7 @@ from dotenv import load_dotenv, dotenv_values
 from scipy.stats import binom
 
 load_dotenv() 
-PATH = "/" + os.getenv("key")
+PATH = "/" + os.getenv("base")
 
 app = Flask(__name__)
 
