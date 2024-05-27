@@ -9,6 +9,7 @@ PATH = "/" + os.getenv("base")
 app = Flask(__name__)
 
 print("started")
+print(PATH)
 
 def expected_damage(min_damage, max_damage, rolls, chance, free_rolls):
   damage_range = max_damage - min_damage
