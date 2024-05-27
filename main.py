@@ -4,6 +4,7 @@ from dotenv import load_dotenv, dotenv_values
 from scipy.stats import binom
 
 load_dotenv() 
+PATH = "/" + os.getenv("key")
 
 app = Flask(__name__)
 
@@ -30,7 +31,11 @@ def extract_reqs():
     k : int(request.args.get(k)) if k != "chance" else float(request.args.get(k)) for k in l
   }
 
-@app.route("/expected_damage")
+@app.route(PATH)
+def hello():
+  return "hi"
+
+@app.route(f"{PATH}/expected_damage")
 def expdmg():
     if request.args.get("key") == os.getenv("key"):
       r = extract_reqs()
@@ -38,7 +43,7 @@ def expdmg():
       return {"data": expected_damage(r["min_damage"], r["max_damage"], r["rolls"], r["chance"], r["free_rolls"])}
     return {"data": "uh oh"}
 
-@app.route("/damage_steps")
+@app.route(f"{PATH}/damage_steps")
 def dstep():
     if request.args.get("key") == os.getenv("key"):
       r = extract_reqs()
